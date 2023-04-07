@@ -1,6 +1,7 @@
 # install openpyxl
 
 def main():
+
     import time
     import pandas as pd
     from selenium import webdriver
@@ -8,10 +9,6 @@ def main():
     from selenium.webdriver.support import expected_conditions as EC
     from selenium.webdriver.support.wait import WebDriverWait
     from selenium.webdriver.common.by import By
-    from tkinter import messagebox
-
-    # Log Message - Start Process
-    messagebox.showinfo("Star process", "O processo RPA Challenge será iniciado!")
 
     # Read Excel file
     df = pd.read_excel("input\challenge.xlsx")
@@ -63,6 +60,8 @@ def main():
     result = driver.find_element(By.XPATH, '//*[@class="message2"]').text
     result = result[result.find("in") + 3:result.find("milli")]
 
-    # Log Message - End Process
-    messagebox.showinfo("End process", "Processo finalizado com sucesso!\n"
-                                       "Tempo de processamento:" + result)
+    # Manipular a variável resultado
+    result = float(result)/1000
+    result = "{0} segundos".format(result)
+
+    return result
